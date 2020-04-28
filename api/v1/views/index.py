@@ -7,11 +7,13 @@ from models import storage
 
 @app_views.route('/status',  methods=['GET'], strict_slashes=False)
 def status():
+    """Status method that returns a JSON: "status": "OK""""
     return jsonify({'status': 'OK'})
 
 
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def stats():
+    """Stats methods that return the number of objects"""
     objs = ['Amenity', 'City', 'Place', 'Review', 'State', 'User']
     name_objs = ['amenities', 'cities', 'places', 'reviews', 'states', 'users']
     dic_objs = {}
