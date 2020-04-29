@@ -30,6 +30,10 @@ def user():
         new_user = User()
         new_user.email = data['email']
         new_user.password = data['password']
+        if 'first_name' in data:
+            new_user.first_name = data['first_name']
+        if 'last_name' in data:
+            new_user.last_name = data['last_name']
         storage.new(new_user)
         storage.save()
         return jsonify(new_user.to_dict()), 201
