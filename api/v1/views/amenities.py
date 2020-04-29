@@ -20,10 +20,10 @@ def amenities():
             aminities.append(obj.to_dict())
         return jsonify(aminities)
     elif request.method == 'POST':
-        if not request.get_json:
+        if not request.get_json():
             return jsonify('Not a JSON'), 400
         data = request.get_json()
-        if not ('name' in data):
+        if not('name' in data):
             return jsonify('Missing name'), 400
         new_amenity = Amenity()
         new_amenity.name = data['name']
