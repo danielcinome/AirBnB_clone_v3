@@ -48,7 +48,7 @@ def amenity_id(amenity_id):
         storage.save()
         return jsonify({}), 200
     elif request.method == 'PUT':
-        if not request.get_json:
+        if not request.get_json():
             return jsonify('Not a JSON'), 400
         data = request.get_json()
         setattr(amenity, 'name', data['name'])
