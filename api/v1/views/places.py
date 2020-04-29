@@ -29,7 +29,7 @@ def places_city(city_id):
             abort(404)
         if not('name' in data):
             return jsonify('Missing name'), 400
-        new_place = Place(dat**a)
+        new_place = Place(**data)
         storage.new(new_place)
         storage.save()
         return jsonify(new_place.to_dict()), 201
