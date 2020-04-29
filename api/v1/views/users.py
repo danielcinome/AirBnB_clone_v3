@@ -50,7 +50,7 @@ def user_id(user_id):
         if not request.get_json():
             return jsonify('Not a JSON'), 400
         data = request.get_json()
-        setattr(user, 'first_name', data['first_name'])
-        setattr(user, 'last_name', data['last_name'])
+        for k, v in data.items():
+            setattr(user, k, v)
         storage.save()
         return jsonify(user.to_dict()), 200
