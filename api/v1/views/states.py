@@ -46,7 +46,7 @@ def state_id_post():
     if not request.get_json():
         return jsonify('Not a JSON'), 400
     data = request.get_json()
-    if not 'name' in data:
+    if not ('name' in data):
         return jsonify('Missing name'), 400
     new_state = State()
     new_state.name = data['name']
