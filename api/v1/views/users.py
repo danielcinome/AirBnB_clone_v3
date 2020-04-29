@@ -25,7 +25,7 @@ def user():
         data = request.get_json()
         if not('email' in data):
             return jsonify('Missing email'), 400
-        if not('password'in data):
+        if not('password' in data):
             return jsonify('Missing password'), 400
         new_user = User()
         new_user.email = data['email']
@@ -44,13 +44,13 @@ def user_id(user_id):
         abort(404)
     if request.method == 'GET':
         return jsonify(user.to_dict())
-    if request.method == 'DELETE':
+    elif request.method == 'DELETE':
         storage.delete(user)
         storage.save()
         return jsonify({}), 200
     elif request.method == 'PUT':
         if not request.get_json():
-            return jsonify('Not a JSON')
+            return jsonify('Not a JSON'), 400
         data = request.get_json()
         setattr(user, 'first_name', data['first_name'])
         setattr(user, 'last_name', data['last_name'])
