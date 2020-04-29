@@ -7,7 +7,7 @@ from models import storage
 
 @app_views.route('/status',  methods=['GET'], strict_slashes=False)
 def status():
-    """Status method that returns a JSON: "status": "OK""""
+    """Status method that returns a JSON: """
     return jsonify({'status': 'OK'})
 
 
