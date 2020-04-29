@@ -29,13 +29,14 @@ def places_city(city_id):
             abort(404)
         if not('name' in data):
             return jsonify('Missing name'), 400
+        data['city_id'] = city_id
         new_place = Place(**data)
         storage.new(new_place)
         storage.save()
         return jsonify(new_place.to_dict()), 201
     if request.method == 'GET':
-        all_palces = storage.all('Place')
-        for obj in all_palces.values():
+        all_places = storage.all('Place')
+        for obj in all_places.values():
             obj = obj.to_dict()
             if obj['city_id'] == city_id:
                 places.append(obj)
@@ -62,6 +63,7 @@ def place_id(place_id):
             return jsonify('Not a JSON'), 400
         data = request.get_json()
         for k, v in data.items():
-            setattr(place, k, v)
+            if k != 'user_id' and k != 'city_id':
+                setattr(place, k, v)
         storage.save()
         return jsonify(place.to_dict()), 200
