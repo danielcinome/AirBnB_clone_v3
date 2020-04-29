@@ -62,9 +62,7 @@ def place_id(place_id):
             return jsonify('Not a JSON'), 400
         data = request.get_json()
         for k, v in data.items():
-            print(k == 'user_id', k == 'city_id')
             if k != 'user_id' and k != 'city_id':
-                print(k)
                 setattr(place, k, v)
         storage.save()
         return jsonify(place.to_dict()), 200
